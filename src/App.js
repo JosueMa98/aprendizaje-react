@@ -1,43 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react'; // importar para usar useState
 
-function retornarNumeroAleatorio() {
-  return Math.floor(Math.random() * 100);
-}
 
-function retornarIndiceDeMasaCorporal(peso, altura) {
-  const indiceMasa = peso / (altura * altura);
-  return (
-    <h1>Su indice de masa es= {indiceMasa}</h1>
-  );
 
-}
+
+
 
 function App() {
-  const nombre = "josue";
-  const edad = 26;
 
-  const objetoPerro = {
-    nombre: "Pucca",
-    edad: "11 años"
-  };
+    function generarAleatorio()
+    {
+      const valor = Math.floor(Math.random()*10);
+      setNumero(valor);
 
-  const arregloPaginas = ["http://google.com", "http://facebook.com", "http://youtube.com"];
+
+    }
+
+    function generarAleatorio2()
+    {
+      const arreglo = new Array(5);
+      for (let i= 0; i<arreglo.length; i++)
+        {
+          arreglo[i]= Math.floor(Math.random()*10);
+        }
+      setNumeros(arreglo);
+    }
+
+    const[numero, setNumero] = useState(1000); //El valor inicial deseado se declara en los ()
+    const[numeros, setNumeros]=useState([0, 20, 50, 100, 1000]);
 
   return (
     <div>
-      <h1>Retornando numero aleatorio desde funcion: {retornarNumeroAleatorio()}</h1>
-      <h2>Usando nombre de constante: {nombre}</h2>
-      <h3>Usando la edad de la constante por el numero de la funcion aleatoria: {retornarNumeroAleatorio()*edad}</h3>
-      <h4>Usando el nombre del objeto perro</h4>
-      <p>Nombre: {objetoPerro.nombre}, Edad: {objetoPerro.edad}</p>
+      <p>Generar numero aleatorio: {numero} </p>
+      <button onClick={generarAleatorio}>Generar</button>
       <hr/>
-      <a href={arregloPaginas[0]}>Acceso a google </a>
-      <br/>
-      <a href={arregloPaginas[2]}>Acceso a youtube </a>
-      <br/>
-      <h5>Retornando su indice de masa en base a su peso: 80kg y su altura: 170cm</h5>
-      <p>Resultado= {retornarIndiceDeMasaCorporal(80, 1.7)}</p>
+      
+
+      <button onClick={generarAleatorio2}>Generar </button>
+      <h1>Numeros aleatorios:</h1>
+      {
+        numeros.map(num =>(
+          <p>{num}</p>
+        
+        ))
+      }
     </div>
   );
 }
