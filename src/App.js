@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react'; // importar para usar useState
+import Dado from './Dado'; // Importar el componente Dado
+
 
 
 
@@ -11,40 +13,35 @@ function App() {
 
     function generarAleatorio()
     {
-      const valor = Math.floor(Math.random()*10);
-      setNumero(valor);
-
-
+      return  Math.floor(Math.random()*6) + 1; // Genera un número aleatorio entre 1 y 6
+      
     }
-
-    function generarAleatorio2()
+    function tirar()
     {
-      const arreglo = new Array(5);
-      for (let i= 0; i<arreglo.length; i++)
-        {
-          arreglo[i]= Math.floor(Math.random()*10);
-        }
-      setNumeros(arreglo);
+
+
+      setNumero(generarAleatorio()); // Actualiza el estado con el número aleatorio generado
+      setNumero2(generarAleatorio());
+      setNumero3(generarAleatorio());
+
     }
 
-    const[numero, setNumero] = useState(1000); //El valor inicial deseado se declara en los ()
-    const[numeros, setNumeros]=useState([0, 20, 50, 100, 1000]);
+    const [numero, setNumero] = useState(0);
+    const [numero2, setNumero2] = useState(0);
+    const [numero3, setNumero3] = useState(0);
 
   return (
     <div>
-      <p>Generar numero aleatorio: {numero} </p>
-      <button onClick={generarAleatorio}>Generar</button>
+      <p>Generar numero aleatorio</p>
+      <Dado valor={numero} />
+      <Dado valor={numero2} />
+      <Dado valor={numero3} />
+
+      <button onClick={tirar}>Tirar</button>
       <hr/>
       
 
-      <button onClick={generarAleatorio2}>Generar </button>
-      <h1>Numeros aleatorios:</h1>
-      {
-        numeros.map(num =>(
-          <p>{num}</p>
-        
-        ))
-      }
+
     </div>
   );
 }
