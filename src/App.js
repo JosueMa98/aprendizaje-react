@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react'; // importar para usar useState
-import Dado from './Dado'; // Importar el componente Dado
+import React, { useEffect, useState } from 'react'; // importar para usar useState
+
 
 
 
@@ -11,35 +11,27 @@ import Dado from './Dado'; // Importar el componente Dado
 
 function App() {
 
-    function generarAleatorio()
-    {
-      return  Math.floor(Math.random()*6) + 1; // Genera un número aleatorio entre 1 y 6
-      
-    }
-    function tirar()
-    {
+  function cambiar(e)
+  {
+    const nuevoTitulo = e.target.value; // obtener el valor del input
+    setTitulo(nuevoTitulo);
+  }
 
+  const[titulo, setTitulo] = useState("");
 
-      setNumero(generarAleatorio()); // Actualiza el estado con el número aleatorio generado
-      setNumero2(generarAleatorio());
-      setNumero3(generarAleatorio());
+  useEffect(() => {
 
-    }
-
-    const [numero, setNumero] = useState(0);
-    const [numero2, setNumero2] = useState(0);
-    const [numero3, setNumero3] = useState(0);
+    document.title = titulo;
+  })
 
   return (
-    <div>
-      <p>Generar numero aleatorio</p>
-      <Dado valor={numero} />
-      <Dado valor={numero2} />
-      <Dado valor={numero3} />
+    <div className='App'>
 
-      <button onClick={tirar}>Tirar</button>
-      <hr/>
-      
+      <p>Ingrese el titulo deseado:</p>
+      <input type="text" onChange={cambiar} placeholder="Titulo" />
+      <br/>
+
+      <h1>{titulo}</h1>
 
 
     </div>
