@@ -1,3 +1,3 @@
-# Capitulo 06
+# Capitulo 07
 
-Uso de UseEffect para cambiar nombre de la pagina en tiempo real
+Uso de UseState para contador que inicia en 0, uso onSumbit
